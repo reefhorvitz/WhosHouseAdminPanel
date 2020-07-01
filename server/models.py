@@ -10,6 +10,8 @@ class Location(models.Model):
     class Meta:
         db_table = "location"
 
+    def __str__(self):
+        return f'{self.name}'
 
 class User(models.Model):
     email = models.CharField(max_length=500)
@@ -24,6 +26,9 @@ class User(models.Model):
 
     class Meta:
         db_table = "user"
+
+    def __str__(self):
+        return f'{self.fullname}'
 
 
 class UserFollowers(models.Model):
@@ -74,6 +79,9 @@ class Notification(models.Model):
     class Meta:
         db_table = "notification"
 
+    def __str__(self):
+        return f'{self.message} for {self.user}'
+
 
 class Account(models.Model):
     email = models.CharField(max_length=500)
@@ -82,6 +90,8 @@ class Account(models.Model):
     class Meta:
         db_table = "account"
 
+    def __str__(self):
+        return f'{self.email}'
 
 class Message(models.Model):
     message = models.CharField(max_length=500, null=True)
@@ -92,6 +102,9 @@ class Message(models.Model):
 
     class Meta:
         db_table = "message"
+
+    def __str__(self):
+        return f'{self.message} of {self.user}'
 
 
 class Photo(models.Model):
@@ -119,6 +132,9 @@ class Comment(models.Model):
 
     class Meta:
         db_table = "comment"
+
+    def __str__(self):
+        return f'{self.text} of {self.user}'
 
 
 class Like(models.Model):
