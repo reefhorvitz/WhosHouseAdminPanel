@@ -13,6 +13,7 @@ class Location(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+
 class User(models.Model):
     email = models.CharField(max_length=500)
     fullname = models.CharField(max_length=500)
@@ -93,6 +94,7 @@ class Account(models.Model):
     def __str__(self):
         return f'{self.email}'
 
+
 class Message(models.Model):
     message = models.CharField(max_length=500, null=True)
     attachment = models.CharField(max_length=500, null=True)
@@ -108,6 +110,7 @@ class Message(models.Model):
 
 
 class Photo(models.Model):
+    url = models.CharField(max_length=500)
     isAnonymous = models.BooleanField(null=True, default=False, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='photos', db_column="userId")
     location = models.ForeignKey(Location, on_delete=models.CASCADE, db_column="locationId")
@@ -115,6 +118,9 @@ class Photo(models.Model):
 
     class Meta:
         db_table = "photo"
+
+    def __str__(self):
+        return f'{self.url}'
 
 
 class PhotoToUser(models.Model):
